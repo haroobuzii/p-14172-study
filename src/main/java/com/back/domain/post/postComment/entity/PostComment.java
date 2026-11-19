@@ -2,6 +2,7 @@ package com.back.domain.post.postComment.entity;
 
 import com.back.domain.member.member.entity.Member;
 import com.back.domain.post.post.entity.Post;
+import com.back.global.globalExceptionHandler.AccessDeniedException;
 import com.back.global.jpa.entity.BaseEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
@@ -28,5 +29,10 @@ public class PostComment extends BaseEntity {
 
     public void modify(String content) {
         this.content = content;
+    }
+
+    public void checkActorCanDelete(Member actor) {
+        // author 는 LAZY 프록시일 수 있어 equals 대신 id 로 비교
+        if (author.getId() != actor.getId()) throw new AccessDeniedException();
     }
 }
