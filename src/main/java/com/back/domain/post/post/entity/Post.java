@@ -65,4 +65,8 @@ public class Post extends BaseEntity {
         // author 는 LAZY 프록시일 수 있어 equals(getClass 비교) 대신 id 로 비교
         if (author.getId() != actor.getId()) throw new AccessDeniedException();
     }
+
+    public void checkActorCanModify(Member actor) {
+        if (author.getId() != actor.getId()) throw new AccessDeniedException();
+    }
 }
