@@ -53,10 +53,10 @@ public class BaseInitData {
         Post post2 = postService.write(user2, "제목 2", "내용 2");
         Post post3 = postService.write(user3, "제목 3", "내용 3");
 
-        post1.addComment("댓글 1-1");
-        post1.addComment("댓글 1-2");
-        post1.addComment("댓글 1-3");
-        post2.addComment("댓글 2-1");
-        post2.addComment("댓글 2-2");
+        post1.addComment(user1, "댓글 1-1");
+        post1.addComment(user2, "댓글 1-2");
+        post1.addComment(user3, "댓글 1-3");
+        post2.addComment(user1, "댓글 2-1");
+        post2.addComment(user2, "댓글 2-2");
     }
 }

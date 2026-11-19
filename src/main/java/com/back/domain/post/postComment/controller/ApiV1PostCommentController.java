@@ -112,7 +112,7 @@ public class ApiV1PostCommentController {
     ) {
         Post post = postService.findById(postId).get();
 
-        PostComment postComment = postService.writeComment(post, reqBody.content);
+        PostComment postComment = postService.writeComment(null, post, reqBody.content); // TODO: 75강에서 actorId로 작성자 지정
 
         postService.flush();
 
