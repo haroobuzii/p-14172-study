@@ -35,4 +35,8 @@ public class PostComment extends BaseEntity {
         // author 는 LAZY 프록시일 수 있어 equals 대신 id 로 비교
         if (author.getId() != actor.getId()) throw new AccessDeniedException();
     }
+
+    public void checkActorCanModify(Member actor) {
+        if (author.getId() != actor.getId()) throw new AccessDeniedException();
+    }
 }
