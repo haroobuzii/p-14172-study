@@ -3,6 +3,7 @@ package com.back.domain.member.member.service;
 import com.back.domain.member.member.entity.Member;
 import com.back.domain.member.member.repository.MemberRepository;
 import com.back.global.globalExceptionHandler.MemberDuplicateUsernameException;
+import com.back.global.globalExceptionHandler.UnauthenticatedException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -38,5 +39,10 @@ public class MemberService {
 
     public Optional<Member> findByUsername(String username) {
         return memberRepository.findByUsername(username);
+    }
+
+    // actorId 로 현재 요청자(actor)를 찾는다. 없거나(0 포함) 존재하지 않으면 401
+    public Member findActor(int actorId) {
+        return findById(actorId).orElseThrow(UnauthenticatedException::new);
     }
 }
