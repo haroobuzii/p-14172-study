@@ -76,7 +76,7 @@ public class ApiV1PostController {
     public RsData<PostDto> write(
             @RequestBody @Valid PostWriteReqBody reqBody
     ) {
-        Post post = postService.write(reqBody.title, reqBody.content);
+        Post post = postService.write(null, reqBody.title, reqBody.content); // TODO: 74강에서 actorId로 작성자 지정
 
         return new RsData<>(
                 "201-1",
